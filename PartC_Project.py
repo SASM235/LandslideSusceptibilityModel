@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Landslide susceptibility model ----------- Part C --------- by Shruti Anna Samuel (s3933141)
 #Creating the weighted sum of the rasters
-#1) Reclassification the layers based on the frequency ratio  values. This requires user interaction. The user has to create a table to ca
+#1) Reclassification the layers based on the frequency ratio  values.
 #2) Find the final landslide susceptibility using the raster claculator. 
 
 
