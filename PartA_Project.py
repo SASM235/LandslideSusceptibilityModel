@@ -15,8 +15,9 @@ from osgeo import gdal
 #this allows GDAL to throw Python Exceptions
 gdal.UseExceptions()
 
+os.chdir("C:\\Users\\Provide_your_filepath_here\\")#Set the directory
 #provide the file path and the input file names
-filepath = "C:\\Users\\Anna\\Documents\\assignments\\geospatial_programming\\project\\"
+filepath = "C:\\Users\\Provide_your_filepath_here\\" 
 slp = "slope.tif"#Name of the slope raster data
 asp = "aspect.tif"#Name of the aspect raster data
 cur = "curvature.tif"#Name of the curvature raster data
@@ -45,7 +46,7 @@ coords = "%f,%f,%f,%f" %(xmin, xmax, ymin, ymax)
 #vector to raster conversion here is done using the gdal:rasterize processing algorithm.
 
 #lithology vector to lithology raster conversion
-lithoraster = 'C:\\Users\\Anna\\Documents\\assignments\\geospatial_programming\\project\\lithoraster.tif' #output path and filename
+lithoraster = 'C:\\Users\\Provide_your_filepath_here\\lithoraster.tif' #output path and filename
 params = {'INPUT': filepath + lith,
           'FIELD': 'UID_NOTATI',#Mention the field based on which the raster has to be created.
           'UNITS': '1',
@@ -60,7 +61,7 @@ iface.addRasterLayer(lithoraster, "lithoraster") #Adding the raster layer to QGI
 
 
 #geomorphology vector to geomorphology raster conversion
-georaster = 'C:\\Users\\Anna\\Documents\\assignments\\geospatial_programming\\project\\geomraster.tif' #output path and filename
+georaster = 'C:\\Users\\Provide_your_filepath_here\\geomraster.tif' #output path and filename
 params1 = {'INPUT': filepath + gm,
           'FIELD': 'Geom_class',#Mention the field based on which the raster has to be created.
           'UNITS': '1',
@@ -76,7 +77,7 @@ iface.addRasterLayer(georaster, "geomraster")#Adding the raster layer to QGIS
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Clipping the rasters to the study area extent
 
-os.chdir("C:/Users/Anna/Documents/assignments/geospatial_programming/project/")#Set the directory
+
 inputfile = []
 outputfile = []
 
