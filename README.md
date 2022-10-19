@@ -1,6 +1,6 @@
 # Landslide Susceptibility Model
 
-Landslide Susceptibility model generates the landslide susceptibility as a raster layer based on six landslide causative factors.
+Landslide Susceptibility model generates landslide susceptibility as a raster layer based on six landslide causative factors.
 These include slope, aspect, relative relief, curvature as raster layers and lithology and geomorphology as vector layers.  
 In addition to these layers, the study area boundary and historical landslide data is required for the analysis. 
 
