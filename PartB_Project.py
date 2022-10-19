@@ -11,7 +11,7 @@ import processing
 import pandas as pd
 
 #provide the file path and the input file names
-filepath = "C:\\Users\\Anna\\Documents\\assignments\\geospatial_programming\\project\\"
+filepath = "C:\\Users\\Provide_your_filepath_here\\"
 Rslp = "slope_reclass.tif"
 Rasp = "aspect_reclass.tif"
 Rcur = "curv_reclass.tif"
@@ -160,7 +160,7 @@ for file in listfiles:
     out = file[:-4]+'_sampled'+'.shp' #Output files will have the suffix '_sampled'
     params = {'INPUT': (filepath + lspts), 
               'RASTERCOPY': (filepath + file),
-              'COLUMN_PREFIX': 'sample_', #the fields with the values will have the prefix 'sample_1'
+              'COLUMN_PREFIX': 'sample_', #the fields with the sampled values will have the prefix 'sample_1'
               'OUTPUT': filepath + out}
     processing.run("native:rastersampling", params)
     
@@ -238,7 +238,7 @@ mergedGm= areaPergm.merge(statgm, left_on ='value', right_on='sample_1')
 mergedCurv = areaPercurv.merge(statcurv, left_on ='value', right_on='sample_1')
 mergedAsp = areaPerasp.merge(statasp, left_on ='value', right_on='sample_1')
 
-#Finding the frquency ratio
+#Finding the frequency ratio. It is calculated as the frequency of landslides in each class divided by the area perecentage in each class.
 mergedSlp["frequency ratio"]=mergedSlp["freqslp"]/mergedSlp["freqclass"]
 mergedRr["frequency ratio"]=mergedRr["freqrr"]/mergedRr["freqclass"]
 mergedLitho["frequency ratio"]=mergedLitho["freqlitho"]/mergedLitho["freqclass"]
