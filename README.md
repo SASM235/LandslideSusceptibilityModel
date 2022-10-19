@@ -1,1 +1,1 @@
-# LandslideSusceptibilityModel
+# Landslide Susceptibility Model
