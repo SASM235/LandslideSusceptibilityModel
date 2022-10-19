@@ -7,7 +7,7 @@
 
 #reclassify by table
 #Adding the reclassified layers
-filepath = "C:\\Users\\Anna\\Documents\\assignments\\geospatial_programming\\project\\"
+filepath = "C:\\Users\\Provide_your_filepath_here\\" #Provide the filepath here
 
 Reclassslp = "slope_reclass.tif"
 Reclassasp = "aspect_reclass.tif"
@@ -20,6 +20,8 @@ lspts = "landslidepts_prj.shp"
 
 
 #Reclassifying the data using frequency values 
+#The rasters used in the processing should be reclassified using the frequency ratio. The given values are for the sample data. 
+#Users must modify the 'TABLE' parameter to add the values that are relevant for their study area. The frequency ratio values can be obtained after running the Part B script.
 #for lithology
 params = {'DATA_TYPE' : 5, 
             'INPUT_RASTER' : filepath + Reclasslith, 
@@ -91,6 +93,8 @@ paramsrr = {'DATA_TYPE' : 5,
             'TABLE' : ['0','1','1.0057','1.1','6','0']}
 processing.run("native:reclassifybytable", paramsrr)
 
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
 #Raster calculation to make the final landslide susceptibility map
 #All the reclassified rasters with the frequency ratio values  are added together to make the final susceptibility map
 filelists = ["RSlp1.tif", "RAsp1.tif", "Rcur1.tif", "RRr1.tif", "RGm1.tif", "RLith1.tif"]
@@ -110,5 +114,7 @@ processing.run("qgis:rastercalculator",
 'OUTPUT': filepath + 'weighted.tif'})
 
 iface.addRasterLayer((filepath + 'weighted.tif'), "landslide susceptibility")
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 print ('Part C of the landslide susceptibility model is completed.')
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
