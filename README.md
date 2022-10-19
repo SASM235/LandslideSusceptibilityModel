@@ -1,4 +1,4 @@
-# Landslide Susceptibility Model
+# Landslide Susceptibility Model - Frequency Ratio Method
 
 Landslide Susceptibility model generates landslide susceptibility as a raster layer based on six landslide causative factors.
 These include slope, aspect, relative relief, curvature as raster layers and lithology and geomorphology as vector layers.  
