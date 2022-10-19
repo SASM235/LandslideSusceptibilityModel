@@ -2,7 +2,9 @@
 
 Landslide Susceptibility model generates landslide susceptibility as a raster layer based on six landslide causative factors.
 These include slope, aspect, relative relief, curvature as raster layers and lithology and geomorphology as vector layers.  
-In addition to these layers, the study area boundary and historical landslide data is required for the analysis. 
+In addition to these layers, the study area boundary and historical landslide data is required for the analysis. The following scripts
+were written in Python and can be run through the Python console in QGIS. Users can modify the raster cell size and the classification 
+parameters based on the study area.
 
 Note: The raster and vector datasets should be located in one folder. 
 
