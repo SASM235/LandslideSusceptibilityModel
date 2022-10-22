@@ -6,6 +6,16 @@ In addition to these layers, the study area boundary (polygon) and historical la
 The following scripts were written in Python and can be run through the Python console in QGIS. Users can modify the raster cell size 
 and the classification parameters based on the study area.
 
+
+Prerequisities
+*Slope
+*Aspect
+*Relative relief
+*Curvature
+*Lithology
+*Geomorphology
+*Historical landslide points
+
 Note: The raster and vector datasets should be located in one folder before processing.  
 
 The model consists of three parts.
