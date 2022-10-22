@@ -8,13 +8,13 @@ and the classification parameters based on the study area.
 
 
 Prerequisities
-*Slope
-*Aspect
-*Relative relief
-*Curvature
-*Lithology
-*Geomorphology
-*Historical landslide points
+  *Slope
+  *Aspect
+  *Relative relief
+  *Curvature
+  *Lithology
+  *Geomorphology
+  *Historical landslide points
 
 Note: The raster and vector datasets should be located in one folder before processing.  
 
