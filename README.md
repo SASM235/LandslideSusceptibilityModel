@@ -15,6 +15,7 @@ Prerequisities
   5) Lithology
   6) Geomorphology
   7) Historical landslide points
+  8) Study area boundary
 
 Note: The raster and vector datasets should be located in one folder before processing.  
 
