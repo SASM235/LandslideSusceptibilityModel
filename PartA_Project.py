@@ -46,7 +46,7 @@ coords = "%f,%f,%f,%f" %(xmin, xmax, ymin, ymax)
 #vector to raster conversion here is done using the gdal:rasterize processing algorithm.
 
 #lithology vector to lithology raster conversion
-lithoraster = 'C:\\Users\\Provide_your_filepath_here\\lithoraster.tif' #output path and filename
+lithoraster = 'lithoraster.tif' #output filename
 params = {'INPUT': filepath + lith,
           'FIELD': 'UID_NOTATI',#Mention the field based on which the raster has to be created.
           'UNITS': '1',
@@ -54,14 +54,12 @@ params = {'INPUT': filepath + lith,
           'HEIGHT': '12.5',#Raster cell size
           'EXTENT': coords,#extent of the raster layer
           'DATA_TYPE': '5',
-          'OUTPUT': lithoraster}
-processing.run("gdal:rasterize",params)
-lithology = QgsRasterFileWriter(lithoraster) #Writing the raster layer
-iface.addRasterLayer(lithoraster, "lithoraster") #Adding the raster layer to QGIS
+          'OUTPUT': filepath + lithoraster}
+processing.runAndLoadResults("gdal:rasterize",params)
 
 
 #geomorphology vector to geomorphology raster conversion
-georaster = 'C:\\Users\\Provide_your_filepath_here\\geomraster.tif' #output path and filename
+georaster = 'geomraster.tif' #output filename
 params1 = {'INPUT': filepath + gm,
           'FIELD': 'Geom_class',#Mention the field based on which the raster has to be created.
           'UNITS': '1',
@@ -69,10 +67,9 @@ params1 = {'INPUT': filepath + gm,
           'HEIGHT': '12.5',#Raster cell size
           'EXTENT': coords,#extent of the raster layer
           'DATA_TYPE': '5',
-          'OUTPUT': georaster}
-processing.run("gdal:rasterize",params1)
-geomorphology = QgsRasterFileWriter(georaster)#Writing the raster layer
-iface.addRasterLayer(georaster, "geomraster")#Adding the raster layer to QGIS
+          'OUTPUT': filepath + georaster}
+processing.runAndLoadResults("gdal:rasterize",params1)
+
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Clipping the rasters to the study area extent
@@ -83,15 +80,15 @@ outputfile = []
 
 #For loop used to iterate the .tif files in the filepath and clip the raster layers. 
 for file in os.listdir(filepath):
-    if file.endswith(".tif"):
-        layer = iface.addRasterLayer((filepath + file), file[:-4])
+    if file.endswith(".tif"): #Files ending with .tif in the filepath are selected for clipping.
+        layer = iface.addRasterLayer((filepath + file), file[:-4])#Adding all the input layers
         inputfile.append(file)
-        outputfilename = file[:-4]+'_clipped'+file[-4:]
+        outputfilename = file[:-4]+'_clipped'+file[-4:]#Output file name will have '_clipped' suffix
         parameters = {'INPUT': filepath + file,
                       'MASK': wyd_out,#Study area vector file
-                      'NODATA': 9999,
-                      'CROP_TO_CUTLINE': True,
-                      'KEEP_RESOLUTION': True,
+                      'NODATA': 9999,#No data value is 9999 
+                      'CROP_TO_CUTLINE': True,#To use the boundary of the study area
+                      'KEEP_RESOLUTION': True,#To maintain the resolution of the input files
                       'OPTIONS': None,
                       'DATA_TYPE': 0,
                       'OUTPUT': filepath + outputfilename}
