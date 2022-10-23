@@ -100,8 +100,8 @@ processing.run("native:reclassifybytable", paramsrr)
 #Raster calculation to make the final landslide susceptibility map
 #All the reclassified rasters with the frequency ratio values  are added together to make the final susceptibility map
 filelists = ["RSlp1.tif", "RAsp1.tif", "Rcur1.tif", "RRr1.tif", "RGm1.tif", "RLith1.tif"]
-for file in filelists:
-    iface.addRasterLayer((filepath + file), file[:-4])
+for file in filelists: #for loop used to iteate through the layers
+    iface.addRasterLayer((filepath + file), file[:-4]) #adding the raster layers into the map canvas
 
 RSlp2 = filepath + "RSlp1.tif"
 RAsp2 = filepath + "RAsp1.tif"
