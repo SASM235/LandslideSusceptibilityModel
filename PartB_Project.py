@@ -10,8 +10,9 @@ import qgis
 import processing
 import pandas as pd
 
-#provide the file path and the input file names
+#provide the file path
 filepath = "C:\\Users\\Provide_your_filepath_here\\"
+#Output filenames
 Rslp = "slope_reclass.tif"
 Rasp = "aspect_reclass.tif"
 Rcur = "curv_reclass.tif"
@@ -19,6 +20,7 @@ Rrr = "rr_reclass.tif"
 Rgm = "geomraster_clipped.tif"
 Rlith = "lithoraster_clipped.tif"
 
+QgsProject.instance().removeAllMapLayers()#To remove the previously loaded layers.
 
 #Reclassification aspect
 asp = 'aspect_clipped.tif'
@@ -47,7 +49,7 @@ alg_params = {
     'OUTPUT': filepath + Rasp
     }
         
-processing.run("native:reclassifybytable",alg_params)
+processing.runAndLoadResults("native:reclassifybytable",alg_params)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Reclass curvature
@@ -73,7 +75,7 @@ alg_params_3 = {
     'OUTPUT': filepath + Rcur,
     }
         
-processing.run("native:reclassifybytable",alg_params_3)
+processing.runAndLoadResults("native:reclassifybytable",alg_params_3)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Reclass relative relief
@@ -103,7 +105,7 @@ alg_params_3 = {
     'OUTPUT': filepath + Rrr,
     }
         
-processing.run("native:reclassifybytable",alg_params_3)
+processing.runAndLoadResults("native:reclassifybytable",alg_params_3)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Reclass slope
@@ -131,7 +133,7 @@ alg_params_3 = {
     'OUTPUT': filepath + Rslp,
     }
         
-processing.run("native:reclassifybytable",alg_params_3)
+processing.runAndLoadResults("native:reclassifybytable",alg_params_3)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Getting the count of pixels in each category within all LCF layers as tables
@@ -146,7 +148,7 @@ for file in listfiles:
     output = file[:-4]+'_csv'+'.csv'
     parameters1 = {'INPUT': (filepath + file),'BAND': 1,'OUTPUT_TABLE': (filepath + output)}
 
-    result = processing.run("native:rasterlayeruniquevaluesreport",parameters1)
+    result = processing.runAndLoadResults("native:rasterlayeruniquevaluesreport",parameters1)
 
 print ('Successfully exported the raster layers unique values report !!')
     
@@ -189,7 +191,7 @@ for file in listfiles:
               'CATEGORIES_FIELD_NAME': 'sample_1',
               'VALUES_FIELD_NAME':'',
               'OUTPUT': filepath + out}
-    processing.run("qgis:statisticsbycategories", params)
+    processing.runAndLoadResults("qgis:statisticsbycategories", params)
     
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #read CSV tables
@@ -245,6 +247,14 @@ mergedLitho["frequency ratio"]=mergedLitho["freqlitho"]/mergedLitho["freqclass"]
 mergedGm["frequency ratio"]=mergedGm["freqgm"]/mergedGm["freqclass"]
 mergedCurv["frequency ratio"]=mergedCurv["freqcurv"]/mergedCurv["freqclass"]
 mergedAsp["frequency ratio"]=mergedAsp["freqasp"]/mergedAsp["freqclass"]
+
+#printing the attribute tables showing the compiled information from the above steps and the frequency ratio.
+print(mergedSlp)
+print(mergedRr)
+print(mergedLitho)
+print(mergedGm)
+print(mergedCurv)
+print(mergedAsp)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 print ('Part B of landslide susceptibility model is completed. The frequency values for each class in the rasters have been calculated.')
