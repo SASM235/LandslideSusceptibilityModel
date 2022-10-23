@@ -5,6 +5,8 @@
 #2) Find the final landslide susceptibility using the raster claculator. 
 
 
+QgsProject.instance().removeAllMapLayers()#To remove the previously loaded files.This may be used or not used as per the user requirements. 
+
 #reclassify by table
 #Adding the reclassified layers
 filepath = "C:\\Users\\Provide_your_filepath_here\\" #Provide the filepath here
