@@ -17,7 +17,7 @@ Prerequisities
   7) Historical landslide points
   8) Study area boundary
 
-Note: The raster and vector datasets should be located in one folder before processing.  
+Note: The raster and vector datasets should be located in one folder before processing. All the layers should have the same projection.
 
 The model consists of three parts.
 1) Part A - Preprocessing of the layers
